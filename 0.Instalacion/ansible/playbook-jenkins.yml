@@ -1,0 +1,8 @@
+---
+-   hosts: all
+    become: yes
+    tasks:
+      - name: Set System Encoding
+        shell: echo LC_ALL="en_US.UTF-8" >> /etc/environment
+      #Configuration
+      - { include: "tasks/configuration.yml" }

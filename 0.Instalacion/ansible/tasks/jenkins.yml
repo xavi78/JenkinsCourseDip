@@ -1,0 +1,10 @@
+-   name: Install docker jenkins.
+    file: 
+        state: absent
+        path:  /home/jenkins/
+-   name: Get updated files Infraestructure.
+    git: 
+        repo: https://xavi78:jrodrigue1459@bitbucket.org/exodigital/1000gestiones-microservices.git
+        dest: /home/milgestiones
+        force: true
+        version: develop
