@@ -11,6 +11,14 @@ resource "digitalocean_loadbalancer" "www-lb" {
     target_protocol = "http"
   }
 
+  forwarding_rule {
+    entry_port     = 5000
+    entry_protocol = "tcp"
+
+    target_port     = 5000
+    target_protocol = "tcp"
+  }
+
   healthcheck {
     port     = 22
     protocol = "tcp"
