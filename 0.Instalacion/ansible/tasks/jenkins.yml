@@ -3,6 +3,8 @@
     file: 
         state: absent
         path:  /home/jenkins/
+
+
 -   name: Get updated files Infraestructure.
     git: 
         repo: https://xavi78:{{password}}@github.com/xavi78/JenkinsCourseDip.git
