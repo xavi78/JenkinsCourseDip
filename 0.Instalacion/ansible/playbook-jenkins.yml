@@ -1,8 +1,18 @@
 ---
 -   hosts: all
     become: yes
+    roles:
+     - kami911.java_open_jdk11
+   
     tasks:
       - name: Set System Encoding
         shell: echo LC_ALL="en_US.UTF-8" >> /etc/environment
       #Configuration
       - { include: "tasks/configuration.yml" }
+      #Donwload Jenkins.
+      - { include: "tasks/jenkins.yml" }
+      #Start Docker-composer.
+      - name: Start Docker-Compose.
+        docker_compose:
+          project_src: /home/jenkins
+          debug: true

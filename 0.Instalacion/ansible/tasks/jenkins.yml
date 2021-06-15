@@ -1,10 +1,11 @@
+- include_vars: ../vars/claves.yml
 -   name: Install docker jenkins.
     file: 
         state: absent
         path:  /home/jenkins/
 -   name: Get updated files Infraestructure.
     git: 
-        repo: https://xavi78:jrodrigue1459@bitbucket.org/exodigital/1000gestiones-microservices.git
-        dest: /home/milgestiones
+        repo: https://xavi78:{{password}}@github.com/xavi78/JenkinsCourseDip.git
+        dest: /home/jenkins
         force: true
-        version: develop
+        version: main
