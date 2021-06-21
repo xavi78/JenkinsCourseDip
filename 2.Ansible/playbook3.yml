@@ -1,0 +1,9 @@
+- hosts: test1
+  tasks:
+
+    - debug:
+        msg: "Si me he vacuando :)"
+      tags: si-vacuna
+    - debug:
+        msg: "No me he vacunado :("
+      tags: no-vacuna
