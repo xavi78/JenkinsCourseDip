@@ -1,0 +1,6 @@
+- hosts: test1
+  #remote_user: remote_user
+  #become_method: su
+  roles:
+    -  erickveiga02.wordpress_centos7
+    

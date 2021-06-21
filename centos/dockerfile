@@ -2,6 +2,8 @@ FROM centos:7
 
 RUN yum -y install openssh-server
 
+RUN yum -y install sudo
+
 RUN useradd remote_user && \
     echo "1234" | passwd remote_user  --stdin && \
     mkdir /home/remote_user/.ssh && \
@@ -12,12 +14,17 @@ COPY diputacion.pub /home/remote_user/.ssh/authorized_keys
 RUN chown remote_user:remote_user   -R /home/remote_user && \
     chmod 600 /home/remote_user/.ssh/authorized_keys
 
+RUN echo 'remote_user  ALL=(ALL) /bin/su' >>  /etc/sudoers
+
 RUN /usr/sbin/sshd-keygen > /dev/null 2>&1
 
 RUN yum -y install mysql
+
+RUN yum -y install httpd
 
 RUN yum -y install epel-release && \
     yum -y install python-pip && \
     pip install awscli
 
 CMD /usr/sbin/sshd -D
+
