@@ -1,8 +1,9 @@
 version: "3"
 services:
     jenkins:
-        image: "jenkins/jenkins:2.289.1-lts-centos7"
+        image: "jenkins-ansible"
         container_name: jenkins
+        build: .
         ports:
             - "80:8080"
             - "50000:50000"
@@ -10,5 +11,18 @@ services:
             - jenkins:/var/jenkins_home
             - /tmp/:/tmp/
             - ./1.Jobs:/opt
+            - ./2.Ansible:/var/jenkins_home/ansible
+        networks:
+            - net
+    
+    remote_host:
+        container_name: remote-host
+        image: remote-host
+        build:
+            context: centos
+        networks:
+            - net
 volumes:
     jenkins:
+networks:
+    net:
