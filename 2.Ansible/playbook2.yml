@@ -1,0 +1,6 @@
+- hosts: test1
+  tasks:
+
+    - debug:
+        var: NAME
+        
