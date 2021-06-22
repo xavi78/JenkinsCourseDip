@@ -7,3 +7,6 @@ ansible_connection = ssh
 
 test1 ansible_host=remote_host ansible_user=remote_user ansible_sudo_pass=1234 ansible_private_key_file=/var/jenkins_home/ansible/diputacion
 web1 ansible_host=web ansible_user=remote_user ansible_private_key_file=/var/jenkins_home/ansible/diputacion
+
+[dipu]
+dipu ansible_host=104.248.142.8 ansible_user=root ansible_password=14A"d8err3434!d

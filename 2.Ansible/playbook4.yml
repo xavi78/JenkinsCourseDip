@@ -1,6 +1,33 @@
-- hosts: test1
-  #remote_user: remote_user
-  #become_method: su
+- hosts: dipu
+  become: true
+  
   roles:
-    -  erickveiga02.wordpress_centos7
+     - kami911.java_open_jdk11
+ 
+  tasks:
+    - name: install maven (and other packages if needed)
+      become: yes
+      apt: pkg={{ item }} state=latest update_cache=yes cache_valid_time=3600
+      with_items:
+        - maven
+    - name: Downoload repository.
+      git:
+        repo: https://github.com/xavi78/repo_java_dip
+        dest: /home/java-dip-app
+        force: true
+   
+    - name: Create jar.
+      shell: "mvn clean install"
+      args:
+        chdir: /home/java-dip-app
+      become: yes
+      become_user: root
     
+    - name: Execute jar.
+      shell: java -jar REPO*.jar
+      args:
+        chdir: /home/java-dip-app/target
+      become: yes
+      become_user: root
+   
+   
